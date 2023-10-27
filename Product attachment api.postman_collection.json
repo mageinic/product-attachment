@@ -1,0 +1,43 @@
+{
+  "info": {
+    "_postman_id": "5a2da4cd-c5fb-484a-9112-40eb5efdcdee",
+    "name": "Product attachment api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Product attachment api",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNjkwODcwNzE2LCJleHAiOjE2OTA4NzQzMTZ9.l7gy20vmYu2yUVfkQW2xdLuzka2NLxqjrz2arud2baI",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://row.mageinic.com/rest/all/V1/products/24-MB04",
+          "protocol": "https",
+          "host": [
+            "row",
+            "mageinic",
+            "com"
+          ],
+          "path": [
+            "rest",
+            "all",
+            "V1",
+            "products",
+            "24-MB04"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

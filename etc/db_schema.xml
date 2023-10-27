@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_ProductAttachment
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+-->
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="mageinic_product_attachment" resource="default" engine="innodb" comment="Product Attachment table">
+        <column xsi:type="int" name="attachment_id" padding="10" unsigned="true" nullable="false"
+                identity="true" comment="Attachment Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="varchar" name="description" nullable="true" length="255" comment="Description"/>
+        <column xsi:type="varchar" name="uploaded_file" nullable="false" length="255" default=""
+                comment="Uploaded File"/>
+        <column xsi:type="varchar" name="product_ids" nullable="true" length="255" comment="product_ids"/>
+        <column xsi:type="int" name="active" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Active"/>
+        <column xsi:type="int" name="sort_order" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Sort Order"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Update Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="attachment_id"/>
+        </constraint>
+    </table>
+    <table name="mageinic_product_attachment_relation" resource="default" engine="innodb"
+           comment="Product Attachment relation table">
+        <column xsi:type="int" name="attachment_id" padding="10" unsigned="true" nullable="false"
+                identity="false"
+                comment="Product attachment Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product Id"/>
+        <constraint xsi:type="foreign" referenceId="FK_CF2D9030CA4021793CB7770F8148C3E8"
+                    table="mageinic_product_attachment_relation"
+                    column="attachment_id" referenceTable="mageinic_product_attachment"
+                    referenceColumn="attachment_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRD_ATTACHMENT_RELATION_PRD_ATTACHMENT_ID_CAT_PRD_ENTT_ENTT_ID"
+                    table="mageinic_product_attachment_relation" column="product_id"
+                    referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+    <table name="mageinic_attachment_store" resource="default" engine="innodb"
+           comment="Attachment To Store Linkage Table">
+        <column xsi:type="int" name="attachment_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Product attachment Id"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+                comment="Store ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="attachment_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PRD_ATTACHMENT_STORE_ATTACHMENT_ID_PRD_ATTACHMENT_ATTACHMENT_ID"
+                    table="mageinic_attachment_store" column="attachment_id"
+                    referenceTable="mageinic_product_attachment" referenceColumn="attachment_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="ATTACHMENT_STORE_STORE_ID_STORE_STORE_ID"
+                    table="mageinic_attachment_store" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="ATTACHMENT_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+</schema>

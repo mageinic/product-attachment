@@ -1,0 +1,104 @@
+/**
+ * MageINIC
+ * Copyright (C) 2023 MageINIC <support@mageinic.com>
+ *
+ * NOTICE OF LICENSE
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see https://opensource.org/licenses/gpl-3.0.html.
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category MageINIC
+ * @package MageINIC_ProductAttachment
+ * @copyright Copyright (c) 2023 MageINIC (https://www.mageinic.com/)
+ * @license https://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author MageINIC <support@mageinic.com>
+ */
+
+@color_white: #fff;
+@color_gray: #575757;
+
+.top-center {
+    color: @color_gray;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+.icon-styling {
+    background-size: 36px;
+    content: '';
+    display: inline-block;
+    height: 38px;
+    vertical-align: middle;
+    width: 68px;
+}
+body {
+    background: @color_white;
+}
+.downloadable-attachment {
+
+    a {
+
+        .top-center();
+
+        &:before {
+            .icon-styling();
+        }
+        &:hover {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    }
+
+    &.pdf {
+        a {
+            &:before {
+                .lib-url('images/pdf.svg');
+                background: url("@{url}") no-repeat;
+                background-size: 42px;
+                height: 44px;
+            }
+        }
+    }
+    &.doc {
+        a {
+            &:before {
+                .lib-url('images/word.svg');
+                background: url("@{url}") no-repeat;
+            }
+        }
+    }
+    &.csv {
+        a {
+            &:before {
+                .lib-url('images/csv.svg');
+                background: url("@{url}") no-repeat;
+            }
+        }
+    }
+    &.txt {
+        a {
+            &:before {
+                .lib-url('images/txt.svg');
+                background: url("@{url}") no-repeat;
+            }
+        }
+    }
+    &.pptx {
+        a {
+            &:before {
+                .lib-url('images/ppt.svg');
+                background: url("@{url}") no-repeat;
+            }
+        }
+    }
+}

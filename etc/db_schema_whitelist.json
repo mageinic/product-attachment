@@ -1,0 +1,42 @@
+{
+    "mageinic_product_attachment": {
+        "column": {
+            "attachment_id": true,
+            "name": true,
+            "description": true,
+            "uploaded_file": true,
+            "product_ids": true,
+            "active": true,
+            "sort_order": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageinic_product_attachment_relation": {
+        "column": {
+            "attachment_id": true,
+            "product_id": true
+        },
+        "constraint": {
+            "FK_FDA2D18FF49E2CDD609A931F82A267A9": true,
+            "MAGEINIC_PRD_ATTACHMENT_RELATION_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true
+        }
+    },
+    "mageinic_attachment_store": {
+        "column": {
+            "attachment_id": true,
+            "store_id": true
+        },
+        "index": {
+            "MAGEINIC_ATTACHMENT_STORE_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_22EE46A3BD112B4A2FB51F03C1381666": true,
+            "MAGEINIC_ATTACHMENT_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

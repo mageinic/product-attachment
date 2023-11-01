@@ -1,16 +1,17 @@
 {
     "name": "mageinic/product-attachment",
-    "description": "Product Attachments,added multiple attachments for single and multiple  products by MageINIC team",
+    "description": "Product Attachment by MageINIC, Enhance your product with the Magento 2 Product Attachment extension. Seamlessly upload and display informative CSV, DOC, PPTx, and PDF files on product detail pages. Provide customers with valuable resources, such as manuals, guides, and specifications, to boost their confidence and make informed purchase decisions.",
     "require": {
         "php": "^8.0",
-        "mageinic/core": ">=1.0.0",
+        "mageinic/core": "1.0.*",
         "magento/module-catalog": "104.0.*",
         "magento/module-sales": "103.0.*"
     },
     "type": "magento2-module",
     "version": "1.0.0",
     "license": [
-        "Commercial"
+        "OSL-3.0",
+        "AFL-3.0"
     ],
     "authors": [
         {

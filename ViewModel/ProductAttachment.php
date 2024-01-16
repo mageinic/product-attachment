@@ -167,5 +167,43 @@ class ProductAttachment implements ArgumentInterface
     {
         return $this->file->getPathInfo($path);
     }
+
+    /**
+     * Get Product Attachment
+     *
+     * @param int $id
+     * @return array
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
+     */
+    public function getProductAttachment(int $id): array
+    {
+        $arr = [];
+        $storeId = $this->storeManager->getStore()->getId();
+        $sortOrder = $this->sortOrderBuilder
+            ->setField('sort_order')
+            ->setDirection('ASC')
+            ->create();
+        $searchCriteria = $this->searchCriteria
+            ->addFilter('store_id', $storeId)
+            ->addFilter('active', 1)
+            ->addFilter('product_id', $id, 'in')
+            ->addSortOrder($sortOrder)
+            ->create();
+        $attachmentDetails = $this->attachmentRepository->getList($searchCriteria);
+        $collections = $attachmentDetails->getItems();
+
+        foreach ($collections as $collection) {
+            $arr[] = [
+                'attachment_id' => $collection['attachment_id'],
+                'name' => $collection['name'],
+                'uploaded_file' => $this->getAttchmentFullPath($collection['uploaded_file']),
+                'file_name' => $collection['uploaded_file'],
+                'extension' => $this->getPathInfo($collection['uploaded_file'])['extension']
+            ];
+        }
+        return $arr;
+    }
+
 }
 
